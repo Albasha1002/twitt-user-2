@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+      <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Altweets</title>
+</head>
+<body>
+    <h1>Altweets</h1>
+    
+    <!-- Check if there are altweets -->
+    <div th:if="${not #lists.isEmpty(altweets)}">
+        <!-- Iterate over the altweets and display each tweet -->
+        <div th:each="altweet : ${altweets}">
+            <div>
+                <span th:text="${altweet.username}"></span>: <!-- Assuming altweet has a username field -->
+                <span th:text="${altweet.content}"></span> <!-- Assuming altweet has a content field -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- If there are no altweets, display a message -->
+    <div th:if="${#lists.isEmpty(altweets)}">
+        <p>No altweets found for this user.</p>
+    </div>
+    
+    <!-- Display error message if there's an error -->
+    <div th:if="${errorMessage}">
+        <p th:text="${errorMessage}"></p>
+    </div>
+</body>
+</html>
